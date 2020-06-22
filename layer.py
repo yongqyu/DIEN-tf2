@@ -82,7 +82,7 @@ class Bilinear(tf.keras.layers.Layer):
         if gate_b is None:
             return tf.keras.activations.sigmoid(self.linear_act(a) + self.linear_noact(b))
         else:
-            return tf.keras.activations.tanh(tf.math.multiply(gate_b, self.linear_noact(b)))
+            return tf.keras.activations.tanh(self.linear_act(a) + tf.math.multiply(gate_b, self.linear_noact(b)))
 
 class AUGRU(tf.keras.layers.Layer):
     def __init__(self, units):
